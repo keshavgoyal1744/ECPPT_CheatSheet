@@ -209,13 +209,30 @@ check the hex code and see if something is missing or messed up. If there are tw
 
 ************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 ## Step 6: Finding the right module
-
+Attach your vuln file again and 
 Go to immunity debugger and in the bottom search bar write
 
 ```bash
 !mona modules
 ```
 
+Search for the module with all falses in the table and related to your vuln application
+
+-- Now find opcode equivalent for jump ESP. So go to kali
+and write
+
+```
+locate nasm_shell
+```
+Then take the command below and paste it in the terminal.
+```
+/usr/share/metasploit-framework/tools/exploit/nasm_shell.rb
+```
+After that in the shell that appears
+
+```bash
+JMP ESP
+```
 
 ************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 ## Step 7: Generating shellcode
