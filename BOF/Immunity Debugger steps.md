@@ -18,6 +18,14 @@ s_readline();
 s_string("Some command name to test ");
 s_string_variable("0");
 ```
+
+Look you have to overwrite everything(ESP, EBP) till EIP
+
+
+
+
+
+
 ## Step 2: Fuzzing (Send bunch of charecter to break the program)
 
 ## Step 3: Finding the offset (At what point it breaks)
