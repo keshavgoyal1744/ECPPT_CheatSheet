@@ -1,4 +1,12 @@
+Open the exe file as admin
+Go to Debugger and then File -> Attach and then select the program.
+
 ## Step 1: SPIKING (Find vulnerable part of program)
+
+Connect to the vuln application
+nc -nv (ip addr of your windows machine it is running on) (port number): my ip is 10.0.0.52
+
+Now throw bunch of charecters in each command and see if any of the commands accepted by the application is vulnerable
 
 
 
