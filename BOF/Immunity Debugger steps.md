@@ -19,12 +19,8 @@ s_string("Some command name to test ");
 s_string_variable("0");
 ```
 
-Look you have to overwrite everything(ESP, EBP) till EIP
-
-
-
-
-
+Look you have to overwrite everything(ESP, EBP) till EIP. EIP will help to get the root access to anything.
+************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 
 ## Step 2: Fuzzing (Send bunch of charecter to break the program)
 
