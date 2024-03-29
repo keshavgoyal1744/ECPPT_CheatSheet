@@ -6,12 +6,14 @@ Go to Debugger and then File -> Attach and then select the program.
 Connect to the vuln application
 ```bash
 nc -nv (ip addr of your windows machine it is running on) (port number): my ip is 10.0.0.52
-
+```
 Now throw bunch of charecters in each command and see if any of the commands accepted by the application is vulnerable
-TO throw bunch of charecter we use ./generic_send_tcp (ip adddr) (port) (some.spk) 
-
+TO throw bunch of charecter we use 
+```bash
+./generic_send_tcp (ip adddr) (port) (some.spk) 
+```
 some.spk will look like:
-
+```bash
 s_readline();
 s_string("STATS ");
 s_string_variable("0");
