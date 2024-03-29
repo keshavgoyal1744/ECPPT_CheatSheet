@@ -15,7 +15,7 @@ TO throw bunch of charecter we use
 some.spk will look like:
 ```bash
 s_readline();
-s_string("STATS ");
+s_string("Some command name to test ");
 s_string_variable("0");
 ```
 ## Step 2: Fuzzing (Send bunch of charecter to break the program)
