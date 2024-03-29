@@ -12,7 +12,7 @@ TO throw bunch of charecter we use
 ```bash
 ./generic_send_tcp (ip adddr) (port) (some.spk) 
 ```
-some.spk will look like:
+some.spk will look like: you can send as many charecter. just try to break the program
 ```bash
 s_readline();
 s_string("Some command name to test ");
