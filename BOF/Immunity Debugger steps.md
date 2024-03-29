@@ -45,6 +45,10 @@ while True:
 		print "Fuzzing crashed at %s bytes" % str(len(buffer))
 		sys.exit()
 ```
+then do
+```bash
+chmod +x file.py
+```
 
 
 
