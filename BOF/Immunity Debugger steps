@@ -1,1 +1,24 @@
-## Step 1: 
+## Step 1: SPIKING (Find vulnerable part of program)
+
+
+
+## Step 2: Fuzzing (Send bunch of charecter to break the program)
+
+## Step 3: Finding the offset (At what point it breaks)
+
+## Step 4: Overwriting the EIP
+
+
+## Step 5: Finding the Bad Charecters
+
+
+## Step 6: Finding the right module
+
+## Step 7: Generating shellcode
+
+## Step 8: Gain Root
+
+
+
+
+
